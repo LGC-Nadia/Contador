@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Counter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="counter">
+            <h2>Interactive Counter</h2>
+            <div id="counterValue">0</div>
+            <button onclick="incrementCounter()">Increment</button>
+        </div>
+        <div class="name-input">
+            <input type="text" id="nameInput" placeholder="Enter your name">
+            <button onclick="saveName()">Save Name</button>
+        </div>
+        <div class="visitor-list">
+            <h3>Visitors:</h3>
+            <ul id="visitorList"></ul>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.3.2/firebase-database.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
