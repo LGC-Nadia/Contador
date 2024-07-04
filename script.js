@@ -12,14 +12,20 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-// Reference to the visitor's count and names
+// Reference to the counter
 const counterRef = database.ref('counter');
-const visitorsRef = database.ref('visitors');
+const nameRef = database.ref('name');
 
 // Initial load of counter value
 counterRef.on('value', (snapshot) => {
     const counterValue = snapshot.val();
     document.getElementById('counterValue').textContent = counterValue;
+});
+
+// Initial load of saved name
+nameRef.on('value', (snapshot) => {
+    const savedName = snapshot.val();
+    document.getElementById('savedName').textContent = savedName;
 });
 
 // Function to increment the counter
@@ -33,17 +39,7 @@ function incrementCounter() {
 function saveName() {
     const nameInput = document.getElementById('nameInput').value.trim();
     if (nameInput !== '') {
-        visitorsRef.push().set({
-            name: nameInput
-        });
+        nameRef.set(nameInput);
         document.getElementById('nameInput').value = '';
     }
 }
-
-// Display visitors' names
-visitorsRef.on('child_added', (snapshot) => {
-    const visitor = snapshot.val();
-    const visitorItem = document.createElement('li');
-    visitorItem.textContent = visitor.name;
-    document.getElementById('visitorList').appendChild(visitorItem);
-});
